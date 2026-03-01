@@ -1,61 +1,51 @@
-/* Reset */
-body, html {
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
+  font-family: sans-serif;
   overflow: hidden;
-  font-family: Helvetica, Arial, sans-serif;
 }
 
-/* Container */
 .container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
-/* Left Panel */
-.left {
+.panel {
   position: absolute;
   top: 0;
-  left: 0;
+  bottom: 0;
   width: 50%;
-  height: 100%;
-  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: width 0.2s;
+  cursor: pointer;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3rem;
-  cursor: pointer;
-  z-index: 2; /* Make sure left panel is above right panel */
-  transition: width 0.1s;
+  font-size: 2rem;
+  user-select: none;
 }
 
-/* Right Panel */
+.left {
+  left: 0;
+  background: #3498db;
+  z-index: 1;
+}
+
 .right {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  background: #f4f4f4;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3rem;
-  cursor: pointer;
-  z-index: 1; /* Right panel below left */
+  right: 0;
+  background: #e74c3c;
+  z-index: 1;
 }
 
-/* Divider */
 .divider {
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 4px;
-  height: 100%;
-  background: white;
+  bottom: 0;
+  width: 10px;
+  background: #fff;
   cursor: ew-resize;
-  z-index: 3; /* Divider on top */
+  z-index: 2;
+  left: calc(50% - 5px);
 }
