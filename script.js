@@ -1,34 +1,27 @@
 const divider = document.querySelector('.divider');
 const leftPanel = document.querySelector('.panel.left');
 const rightPanel = document.querySelector('.panel.right');
-let isDragging = false;
 
-divider.addEventListener('mousedown', () => isDragging = true);
-document.addEventListener('mouseup', () => isDragging = false);
-document.addEventListener('mousemove', drag);
-
-function drag(e) {
-  if (!isDragging) return;
-
+document.addEventListener('mousemove', (e) => {
   const containerWidth = divider.parentElement.offsetWidth;
-  let newLeft = e.clientX;
+  let cursorX = e.clientX;
 
-  // Clamp the divider between 0 and container width
-  if (newLeft < 0) newLeft = 0;
-  if (newLeft > containerWidth) newLeft = containerWidth;
+  // Clamp cursor between 0 and container width
+  if (cursorX < 0) cursorX = 0;
+  if (cursorX > containerWidth) cursorX = containerWidth;
 
-  // Move divider
-  divider.style.left = newLeft - divider.offsetWidth/2 + 'px';
+  // Move divider to follow cursor
+  divider.style.left = cursorX - divider.offsetWidth/2 + 'px';
 
-  // Resize panels
-  leftPanel.style.width = newLeft + 'px';
-  rightPanel.style.width = containerWidth - newLeft + 'px';
-  rightPanel.style.left = newLeft + 'px';
+  // Adjust panel widths
+  leftPanel.style.width = cursorX + 'px';
+  rightPanel.style.width = containerWidth - cursorX + 'px';
+  rightPanel.style.left = cursorX + 'px';
 
-  // Check for full coverage
-  if (newLeft <= 0) {
+  // Full coverage detection
+  if (cursorX <= 0) {
     window.location.href = rightPanel.dataset.url; // Right covers left
-  } else if (newLeft >= containerWidth) {
+  } else if (cursorX >= containerWidth) {
     window.location.href = leftPanel.dataset.url; // Left covers right
   }
-}
+});
