@@ -1,28 +1,34 @@
-document.addEventListener("DOMContentLoaded", function () {
+const divider = document.querySelector('.divider');
+const leftPanel = document.querySelector('.panel.left');
+const rightPanel = document.querySelector('.panel.right');
+let isDragging = false;
 
-  const divider = document.querySelector('.divider');
-  const leftPanel = document.querySelector('.left');
-  const container = document.querySelector('.container');
+divider.addEventListener('mousedown', () => isDragging = true);
+document.addEventListener('mouseup', () => isDragging = false);
+document.addEventListener('mousemove', drag);
 
-  let isDragging = false;
+function drag(e) {
+  if (!isDragging) return;
 
-  divider.addEventListener('mousedown', function () {
-    isDragging = true;
-  });
+  const containerWidth = divider.parentElement.offsetWidth;
+  let newLeft = e.clientX;
 
-  document.addEventListener('mouseup', function () {
-    isDragging = false;
-  });
+  // Clamp the divider between 0 and container width
+  if (newLeft < 0) newLeft = 0;
+  if (newLeft > containerWidth) newLeft = containerWidth;
 
-  document.addEventListener('mousemove', function (e) {
-    if (!isDragging) return;
+  // Move divider
+  divider.style.left = newLeft - divider.offsetWidth/2 + 'px';
 
-    const rect = container.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left;
-    const percentage = (offsetX / rect.width) * 100;
+  // Resize panels
+  leftPanel.style.width = newLeft + 'px';
+  rightPanel.style.width = containerWidth - newLeft + 'px';
+  rightPanel.style.left = newLeft + 'px';
 
-    leftPanel.style.width = percentage + "%";
-    divider.style.left = percentage + "%";
-  });
-
-});
+  // Check for full coverage
+  if (newLeft <= 0) {
+    window.location.href = rightPanel.dataset.url; // Right covers left
+  } else if (newLeft >= containerWidth) {
+    window.location.href = leftPanel.dataset.url; // Left covers right
+  }
+}
