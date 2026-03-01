@@ -1,22 +1,28 @@
-const divider = document.querySelector('.divider');
-const leftPanel = document.querySelector('.left');
+document.addEventListener("DOMContentLoaded", function () {
 
-let isDragging = false;
+  const divider = document.querySelector('.divider');
+  const leftPanel = document.querySelector('.left');
+  const container = document.querySelector('.container');
 
-divider.addEventListener('mousedown', () => {
-  isDragging = true;
-});
+  let isDragging = false;
 
-document.addEventListener('mouseup', () => {
-  isDragging = false;
-});
+  divider.addEventListener('mousedown', function () {
+    isDragging = true;
+  });
 
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
+  document.addEventListener('mouseup', function () {
+    isDragging = false;
+  });
 
-  const containerWidth = window.innerWidth;
-  const newLeftWidth = (e.clientX / containerWidth) * 100;
+  document.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
 
-  leftPanel.style.width = newLeftWidth + "%";
-  divider.style.left = newLeftWidth + "%";
+    const rect = container.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const percentage = (offsetX / rect.width) * 100;
+
+    leftPanel.style.width = percentage + "%";
+    divider.style.left = percentage + "%";
+  });
+
 });
