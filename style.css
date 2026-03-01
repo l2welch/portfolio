@@ -1,3 +1,4 @@
+/* Reset */
 body, html {
   margin: 0;
   padding: 0;
@@ -5,42 +6,56 @@ body, html {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+/* Container */
 .container {
   position: relative;
   width: 100vw;
   height: 100vh;
 }
 
-.panel {
+/* Left Panel */
+.left {
   position: absolute;
-  height: 100%;
+  top: 0;
+  left: 0;
   width: 50%;
+  height: 100%;
+  background: #111;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 3rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  z-index: 2; /* Make sure left panel is above right panel */
+  transition: width 0.1s;
 }
 
-.left {
-  left: 0;
-  background: #111;
-  color: white;
-}
-
+/* Right Panel */
 .right {
-  right: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
   background: #f4f4f4;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  cursor: pointer;
+  z-index: 1; /* Right panel below left */
 }
 
+/* Divider */
 .divider {
   position: absolute;
-  left: 50%;
   top: 0;
+  left: 50%;
   width: 4px;
   height: 100%;
   background: white;
   cursor: ew-resize;
+  z-index: 3; /* Divider on top */
 }
