@@ -36,12 +36,12 @@ html, body {
   left: 0;
   width: 50vw;
   background: #3498db;
-  z-index: 1;  /* underneath */
+  z-index: 2; 
 }
 
 .right {
   left: 50vw;
   width: 50vw;
   background: #e74c3c;
-  z-index: 2;  /* always on top */
+  z-index: 1;  
 }
