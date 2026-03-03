@@ -30,6 +30,15 @@ html, body {
   color: white;
   font-size: 3rem;
   user-select: none;
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+body {
+  transition: opacity 0.4s ease;
+}
+
+body.fade-out {
+  opacity: 0;
 }
 
 .left {
