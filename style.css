@@ -1,15 +1,13 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-family: sans-serif;
   overflow: hidden;
 }
 
 .container {
   position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -17,35 +15,16 @@ html, body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: width 0.2s;
-  cursor: pointer;
-  color: white;
-  font-size: 2rem;
-  user-select: none;
 }
 
 .left {
   left: 0;
   background: #3498db;
-  z-index: 1;
 }
 
 .right {
   background: #e74c3c;
-  z-index: 1;
-}
-
-.divider {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 0px;
-  background: transparent;
-  cursor: ew-resize;
-  z-index: 2;
-  left: calc(50% - 5px);
 }
