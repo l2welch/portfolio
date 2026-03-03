@@ -26,3 +26,10 @@ window.addEventListener('resize', () => {
   const center = container.offsetWidth / 2;
   updatePanels(center + container.getBoundingClientRect().left);
 });
+
+  if (cursorX <= 0) {
+    window.location.href = rightPanel.dataset.url; // Right covers left
+  } else if (cursorX >= containerWidth) {
+    window.location.href = leftPanel.dataset.url; // Left covers right
+  }
+});
