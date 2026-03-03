@@ -24,12 +24,36 @@ function updatePanels(x) {
 
   const threshold = 10;
 
-  if (cursorX <= threshold) {
-    window.location.href = rightPanel.dataset.url;
-  } 
-  else if (cursorX >= rect.width - threshold) {
-    window.location.href = leftPanel.dataset.url;
+if (cursorX <= threshold) {
+  triggerTransition(rightPanel.dataset.url, rect.width, "right");
+} 
+else if (cursorX >= rect.width - threshold) {
+  triggerTransition(leftPanel.dataset.url, rect.width, "left");
+}
+
+  let transitioning = false;
+
+function triggerTransition(url, fullWidth, side) {
+  if (transitioning) return;
+  transitioning = true;
+
+  if (side === "right") {
+    leftPanel.style.width = "0px";
+    rightPanel.style.left = "0px";
+    rightPanel.style.width = fullWidth + "px";
+  } else {
+    leftPanel.style.width = fullWidth + "px";
+    rightPanel.style.width = "0px";
   }
+
+  setTimeout(() => {
+    document.body.classList.add("fade-out");
+  }, 200);
+
+  setTimeout(() => {
+    window.location.href = url;
+  }, 600);
+}
 }
 
 // Follow cursor
