@@ -3,32 +3,18 @@ const leftPanel = document.querySelector('.panel.left');
 const rightPanel = document.querySelector('.panel.right');
 
 document.addEventListener('mousemove', (e) => {
-  const containerWidth = divider.parentElement.offsetWidth;
-  let cursorX = e.clientX;
+  const container = document.querySelector('.container');
+  const rect = container.getBoundingClientRect();
 
-  function setInitialPosition() {
-  const containerWidth = document.querySelector('.container').offsetWidth;
-  const center = containerWidth / 2;
+  let cursorX = e.clientX - rect.left;
 
-  leftPanel.style.width = center + 'px';
-  rightPanel.style.width = containerWidth - center + 'px';
-  rightPanel.style.left = center + 'px';
-  divider.style.left = center - divider.offsetWidth / 2 + 'px';
-}
-
-window.addEventListener('load', setInitialPosition);
-  
-  // Clamp cursor between 0 and container width
   if (cursorX < 0) cursorX = 0;
-  if (cursorX > containerWidth) cursorX = containerWidth;
+  if (cursorX > rect.width) cursorX = rect.width;
 
-  // Move divider to follow cursor
-  divider.style.left = cursorX - divider.offsetWidth/2 + 'px';
-
-    // Adjust panel widths
   leftPanel.style.width = cursorX + 'px';
-  rightPanel.style.width = containerWidth - cursorX + 'px';
   rightPanel.style.left = cursorX + 'px';
+  rightPanel.style.width = rect.width - cursorX + 'px';
+});
 
   // Full coverage detection
   if (cursorX <= 0) {
