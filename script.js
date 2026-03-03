@@ -6,14 +6,21 @@ function updatePanels(x) {
   const rect = container.getBoundingClientRect();
   let cursorX = x - rect.left;
 
-  // Clamp inside container
   if (cursorX < 0) cursorX = 0;
   if (cursorX > rect.width) cursorX = rect.width;
 
-  // Resize panels
   leftPanel.style.width = cursorX + 'px';
   rightPanel.style.left = cursorX + 'px';
   rightPanel.style.width = rect.width - cursorX + 'px';
+
+  // Swap stacking order depending on direction
+  if (cursorX < rect.width / 2) {
+    rightPanel.style.zIndex = 2;
+    leftPanel.style.zIndex = 1;
+  } else {
+    leftPanel.style.zIndex = 2;
+    rightPanel.style.zIndex = 1;
+  }
 }
 
 // Follow cursor
