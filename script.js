@@ -22,6 +22,6 @@ document.addEventListener('mousemove', (e) => {
   if (cursorX <= 0) {
     window.location.href = "art.html"; // Right covers left
   } else if (cursorX >= containerWidth) {
-    window.location.href = leftPanel.dataset.url; // Left covers right
+    window.location.href = "engineering.html"; // Left covers right
   }
 });
