@@ -22,7 +22,7 @@ function updatePanels(x) {
     rightPanel.style.zIndex = 1;
   }
 
-  const threshold = 5;
+  const threshold = 10;
 
   if (cursorX <= threshold) {
     window.location.href = rightPanel.dataset.url;
