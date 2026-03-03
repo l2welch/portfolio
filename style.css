@@ -1,9 +1,17 @@
-html, body {
-  height: 100%;
+* {
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* Fullscreen container */
 .container {
   position: relative;
   width: 100vw;
@@ -11,6 +19,7 @@ html, body {
   overflow: hidden;
 }
 
+/* Panels */
 .panel {
   position: absolute;
   top: 0;
@@ -18,13 +27,21 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  font-size: 3rem;
+  user-select: none;
 }
 
+/* Left panel */
 .left {
   left: 0;
+  width: 50vw;              /* Start centered */
   background: #3498db;
 }
 
+/* Right panel */
 .right {
+  left: 50vw;               /* Start centered */
+  width: 50vw;
   background: #e74c3c;
 }
