@@ -44,13 +44,13 @@ body.fade-out {
 .left {
   left: 0;
   width: 50vw;
-  background: #fe696e;
+  background: #F05E2D;
   z-index: 2; 
 }
 
 .right {
   left: 50vw;
   width: 50vw;
-  background: #018fa6;
+  background: #72B5E9;
   z-index: 1;  
 }
