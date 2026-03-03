@@ -3,23 +3,25 @@ const leftPanel = document.querySelector('.panel.left');
 const rightPanel = document.querySelector('.panel.right');
 
 document.addEventListener('mousemove', (e) => {
-  const container = document.querySelector('.container');
-  const rect = container.getBoundingClientRect();
+  const containerWidth = divider.parentElement.offsetWidth;
+  let cursorX = e.clientX;
 
-  let cursorX = e.clientX - rect.left;
-
+  // Clamp cursor between 0 and container width
   if (cursorX < 0) cursorX = 0;
-  if (cursorX > rect.width) cursorX = rect.width;
+  if (cursorX > containerWidth) cursorX = containerWidth;
 
+  // Move divider to follow cursor
+  divider.style.left = cursorX - divider.offsetWidth/2 + 'px';
+
+  // Adjust panel widths
   leftPanel.style.width = cursorX + 'px';
+  rightPanel.style.width = containerWidth - cursorX + 'px';
   rightPanel.style.left = cursorX + 'px';
-  rightPanel.style.width = rect.width - cursorX + 'px';
-});
 
   // Full coverage detection
   if (cursorX <= 0) {
-    window.location.href = "art.html"; // Right covers left
+    window.location.href = rightPanel.dataset.url; // Right covers left
   } else if (cursorX >= containerWidth) {
-    window.location.href = "engineering.html"; // Left covers right
+    window.location.href = leftPanel.dataset.url; // Left covers right
   }
 });
