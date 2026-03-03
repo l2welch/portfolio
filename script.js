@@ -20,7 +20,7 @@ document.addEventListener('mousemove', (e) => {
 
   // Full coverage detection
   if (cursorX <= 0) {
-    window.location.href = rightPanel.dataset.url; // Right covers left
+    window.location.href = "art.html"; // Right covers left
   } else if (cursorX >= containerWidth) {
     window.location.href = leftPanel.dataset.url; // Left covers right
   }
