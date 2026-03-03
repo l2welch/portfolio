@@ -27,9 +27,11 @@ window.addEventListener('resize', () => {
   updatePanels(center + container.getBoundingClientRect().left);
 });
 
-  if (cursorX <= 0) {
-    window.location.href = rightPanel.dataset.url; // Right covers left
-  } else if (cursorX >= containerWidth) {
-    window.location.href = leftPanel.dataset.url; // Left covers right
-  }
-});
+const threshold = 5;
+
+if (cursorX <= threshold) {
+  window.location.href = rightPanel.dataset.url;
+} 
+else if (cursorX >= rect.width - threshold) {
+  window.location.href = leftPanel.dataset.url;
+}
