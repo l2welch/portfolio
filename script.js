@@ -2,36 +2,7 @@ const container = document.querySelector('.container');
 const leftPanel = document.querySelector('.left');
 const rightPanel = document.querySelector('.right');
 
-function updatePanels(x) {
-  const rect = container.getBoundingClientRect();
-  let cursorX = x - rect.left;
-
-  if (cursorX < 0) cursorX = 0;
-  if (cursorX > rect.width) cursorX = rect.width;
-
-  leftPanel.style.width = cursorX + 'px';
-  rightPanel.style.left = cursorX + 'px';
-  rightPanel.style.width = rect.width - cursorX + 'px';
-
-  // Swap stacking order
-  if (cursorX < rect.width / 2) {
-    rightPanel.style.zIndex = 2;
-    leftPanel.style.zIndex = 1;
-  } else {
-    leftPanel.style.zIndex = 2;
-    rightPanel.style.zIndex = 1;
-  }
-
-  const threshold = 10;
-
-if (cursorX <= threshold) {
-  triggerTransition(rightPanel.dataset.url, rect.width, "right");
-} 
-else if (cursorX >= rect.width - threshold) {
-  triggerTransition(leftPanel.dataset.url, rect.width, "left");
-}
-
-  let transitioning = false;
+let transitioning = false; // ✅ OUTSIDE
 
 function triggerTransition(url, fullWidth, side) {
   if (transitioning) return;
@@ -54,6 +25,37 @@ function triggerTransition(url, fullWidth, side) {
     window.location.href = url;
   }, 600);
 }
+
+function updatePanels(x) {
+  if (transitioning) return; // stop movement during transition
+
+  const rect = container.getBoundingClientRect();
+  let cursorX = x - rect.left;
+
+  if (cursorX < 0) cursorX = 0;
+  if (cursorX > rect.width) cursorX = rect.width;
+
+  leftPanel.style.width = cursorX + 'px';
+  rightPanel.style.left = cursorX + 'px';
+  rightPanel.style.width = rect.width - cursorX + 'px';
+
+  // Swap stacking order
+  if (cursorX < rect.width / 2) {
+    rightPanel.style.zIndex = 2;
+    leftPanel.style.zIndex = 1;
+  } else {
+    leftPanel.style.zIndex = 2;
+    rightPanel.style.zIndex = 1;
+  }
+
+  const threshold = 10;
+
+  if (cursorX <= threshold) {
+    triggerTransition(rightPanel.dataset.url, rect.width, "right");
+  } 
+  else if (cursorX >= rect.width - threshold) {
+    triggerTransition(leftPanel.dataset.url, rect.width, "left");
+  }
 }
 
 // Follow cursor
@@ -66,4 +68,3 @@ window.addEventListener('resize', () => {
   const center = container.offsetWidth / 2;
   updatePanels(center + container.getBoundingClientRect().left);
 });
-
