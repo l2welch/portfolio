@@ -13,6 +13,11 @@ document.addEventListener('mousemove', (e) => {
   // Move divider to follow cursor
   divider.style.left = cursorX - divider.offsetWidth/2 + 'px';
 
+    // Adjust panel widths
+  leftPanel.style.width = cursorX + 'px';
+  rightPanel.style.width = containerWidth - cursorX + 'px';
+  rightPanel.style.left = cursorX + 'px';
+
   // Full coverage detection
   if (cursorX <= 0) {
     window.location.href = rightPanel.dataset.url; // Right covers left
