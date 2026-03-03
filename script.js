@@ -6,6 +6,18 @@ document.addEventListener('mousemove', (e) => {
   const containerWidth = divider.parentElement.offsetWidth;
   let cursorX = e.clientX;
 
+  function setInitialPosition() {
+  const containerWidth = document.querySelector('.container').offsetWidth;
+  const center = containerWidth / 2;
+
+  leftPanel.style.width = center + 'px';
+  rightPanel.style.width = containerWidth - center + 'px';
+  rightPanel.style.left = center + 'px';
+  divider.style.left = center - divider.offsetWidth / 2 + 'px';
+}
+
+window.addEventListener('load', setInitialPosition);
+  
   // Clamp cursor between 0 and container width
   if (cursorX < 0) cursorX = 0;
   if (cursorX > containerWidth) cursorX = containerWidth;
