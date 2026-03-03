@@ -1,27 +1,28 @@
-const divider = document.querySelector('.divider');
-const leftPanel = document.querySelector('.panel.left');
-const rightPanel = document.querySelector('.panel.right');
+const container = document.querySelector('.container');
+const leftPanel = document.querySelector('.left');
+const rightPanel = document.querySelector('.right');
 
-document.addEventListener('mousemove', (e) => {
-  const containerWidth = divider.parentElement.offsetWidth;
-  let cursorX = e.clientX;
+function updatePanels(x) {
+  const rect = container.getBoundingClientRect();
+  let cursorX = x - rect.left;
 
-  // Clamp cursor between 0 and container width
+  // Clamp inside container
   if (cursorX < 0) cursorX = 0;
-  if (cursorX > containerWidth) cursorX = containerWidth;
+  if (cursorX > rect.width) cursorX = rect.width;
 
-  // Move divider to follow cursor
-  divider.style.left = cursorX - divider.offsetWidth/2 + 'px';
-
-  // Adjust panel widths
+  // Resize panels
   leftPanel.style.width = cursorX + 'px';
-  rightPanel.style.width = containerWidth - cursorX + 'px';
   rightPanel.style.left = cursorX + 'px';
+  rightPanel.style.width = rect.width - cursorX + 'px';
+}
 
-  // Full coverage detection
-  if (cursorX <= 0) {
-    window.location.href = rightPanel.dataset.url; // Right covers left
-  } else if (cursorX >= containerWidth) {
-    window.location.href = leftPanel.dataset.url; // Left covers right
-  }
+// Follow cursor
+document.addEventListener('mousemove', (e) => {
+  updatePanels(e.clientX);
+});
+
+// Keep centered on resize
+window.addEventListener('resize', () => {
+  const center = container.offsetWidth / 2;
+  updatePanels(center + container.getBoundingClientRect().left);
 });
