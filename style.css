@@ -32,16 +32,16 @@ html, body {
   user-select: none;
 }
 
-/* Left panel */
 .left {
   left: 0;
-  width: 50vw;              /* Start centered */
+  width: 50vw;
   background: #3498db;
+  z-index: 1;  /* underneath */
 }
 
-/* Right panel */
 .right {
-  left: 50vw;               /* Start centered */
+  left: 50vw;
   width: 50vw;
   background: #e74c3c;
+  z-index: 2;  /* always on top */
 }
