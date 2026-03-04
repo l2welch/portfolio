@@ -48,7 +48,7 @@ function updatePanels(x) {
     rightPanel.style.zIndex = 1;
   }
 
-  const threshold = 10;
+  const threshold = 50;
 
 if (cursorX <= threshold) {
   // Right panel covers screen
