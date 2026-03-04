@@ -70,3 +70,14 @@ window.addEventListener('resize', () => {
   const center = container.offsetWidth / 2;
   updatePanels(center + container.getBoundingClientRect().left);
 });
+
+const overlay = document.getElementById("welcomeOverlay");
+const closeBtn = document.getElementById("closePopup");
+
+window.addEventListener("load", () => {
+  overlay.style.display = "flex";
+});
+
+closeBtn.addEventListener("click", () => {
+  overlay.style.display = "none";
+});
