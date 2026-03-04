@@ -50,12 +50,14 @@ function updatePanels(x) {
 
   const threshold = 10;
 
-  if (cursorX <= threshold) {
-    triggerTransition(leftPanel.dataset.url, rect.width, "left");
-  } 
-  else if (cursorX >= rect.width - threshold) {
-    triggerTransition(rightPanel.dataset.url, rect.width, "right");
-  }
+if (cursorX <= threshold) {
+  // Right panel covers screen
+  triggerTransition(rightPanel.dataset.url, rect.width, "right");
+} 
+else if (cursorX >= rect.width - threshold) {
+  // Left panel covers screen
+  triggerTransition(leftPanel.dataset.url, rect.width, "left");
+}
 }
 
 // Follow cursor
