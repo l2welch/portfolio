@@ -70,6 +70,7 @@ body.fade-out {
 .modal {
   background: white;
   width: 600px;
+  height: 400px;
   max-width: 90%;
   border-radius: 12px;
   padding: 30px;
