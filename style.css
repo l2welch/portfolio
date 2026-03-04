@@ -94,7 +94,7 @@ body.fade-out {
 /* Text section */
 .modal-text {
   flex: 1;
-  font-size: 40px;
+  font-size: 6px;
 }
 
 .modal-text h2 {
