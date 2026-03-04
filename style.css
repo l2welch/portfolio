@@ -27,7 +27,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #36382e;
+  color: #684c41;
   font-size: 3rem;
   user-select: none;
   transition: width 0.4s ease, left 0.4s ease;
@@ -44,13 +44,13 @@ body.fade-out {
 .left {
   left: 0;
   width: 50vw;
-  background: #F05E2D;
+  background: #fdae38;
   z-index: 2; 
 }
 
 .right {
   left: 50vw;
   width: 50vw;
-  background: #72B5E9;
+  background: #4fa3a5;
   z-index: 1;  
 }
