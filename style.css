@@ -69,7 +69,7 @@ body.fade-out {
 /* Modal box */
 .modal {
   background: white;
-  width: 600px;
+  width: 800px;
   height: 400px;
   max-width: 90%;
   border-radius: 12px;
@@ -94,7 +94,7 @@ body.fade-out {
 /* Text section */
 .modal-text {
   flex: 1;
-  font-size: 6px;
+  font-size: 15px;
 }
 
 .modal-text h2 {
