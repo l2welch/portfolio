@@ -54,3 +54,76 @@ body.fade-out {
   background: #4fa3a5;
   z-index: 1;  
 }
+
+/* Overlay background */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal box */
+.modal {
+  background: white;
+  width: 600px;
+  max-width: 90%;
+  border-radius: 12px;
+  padding: 30px;
+  position: relative;
+  animation: bounceIn 0.6s ease;
+}
+
+/* Content layout */
+.modal-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Image section */
+.modal-image img {
+  width: 180px;
+  border-radius: 8px;
+}
+
+/* Text section */
+.modal-text {
+  flex: 1;
+}
+
+.modal-text h2 {
+  margin-bottom: 10px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Bounce animation */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
