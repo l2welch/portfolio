@@ -27,7 +27,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #684c41;
+  color: #f7f2ec;
   font-size: 3rem;
   user-select: none;
   transition: width 0.4s ease, left 0.4s ease;
